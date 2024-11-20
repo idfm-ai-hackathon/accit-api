@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+pydantic
+pydantic-settings
+elasticsearch
+duckdb
+python-dotenv
+langchain
+langchain_openai
+ruff
+websockets
+httpx
+s3fs
+pandas
+llama-cpp-python
+huggingface_hub[cli]
+pytest
