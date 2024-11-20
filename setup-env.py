@@ -207,7 +207,8 @@ elasticsearch
 duckdb
 python-dotenv
 langchain
-langchain_openai
+langchain-community
+langchain-openai
 ruff
 websockets
 httpx
