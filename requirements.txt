@@ -8,6 +8,9 @@ python-dotenv
 langchain
 langchain-community
 langchain-openai
+langchain-huggingface
+unstructured[pdf]
+faiss-cpu
 ruff
 websockets
 httpx
@@ -16,3 +19,5 @@ pandas
 llama-cpp-python
 huggingface_hub[cli]
 pytest
+numpy
+tenacity
