@@ -19,17 +19,16 @@ Chat bot :"
 falc_scorer:
   model: AzureChatOpenAI
   system_prompt: "Voici un ensemble de règles qui permettent de déterminer si un texte est facilement compréhensible par un utilisateur handicapé mentalement :\n
-Explique succintement et clairement la situation.\n
-Tu dois répondre en une ou deux phrases.\n
-Élimine les éléments anxiogènes.\n
-Utilise des mots simples, pas d'acronymes ou d'initiales. Sois cohérent dans tes propos et
-utilise toujours le même mot pour décrire les mêmes choses.\n
-N'utilise pas de métaphore ou de termes étrangers.\n
-N'utilise pas de grands nombres ou de pourcentages.\n
-Fais des phrases courtes avec une idée et un verbe par phrase. Les phrases doivent tenir sur une ligne.\n
-Utilise des phrases positives. Dis 'vous restez dans le train' plutôt que 'vous ne devez pas quitter le train'.\n
-Adresse toi directement à l’utilisateur.\n
-Place toujours tes informations dans un ordre facile à comprendre et à suivre\n\n
+- Explique succintement et clairement la situation.\n
+- Les phrases doivent être courtes.\n
+- Il ne doit pas y avoir plus d'un verbe par phrase.\n
+- Chaque phrase doit être sur sa propre ligne.\n
+- Il n'y a que des mots simples, d'acronymes ou d'initiales.\n
+- Aucune métaphore ne doit être utilisée.\n
+- Aucun terme étranger ne doit être utilisé.\n
+- Il ne doit pas y avoir de grands nombres ou de pourcentage.\n
+- Les phrases doivent être tournée de manière positive. Il faut dire 'vous restez dans le train' plutôt que 'vous ne devez pas quitter le train'.\n
+- Le texte doit s'adresser directement à l'utilisateur.\n\n
 Retourne un json avec les 4 champs suivants :\n
 - 'good' : les points positifs qui peuvent être facilement compris par un utilisateur handicapé mentalement\n
 - 'bad' : les points négatifs qui ne peuvent pas être facilement compris\n
