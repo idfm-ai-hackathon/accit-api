@@ -15,7 +15,7 @@ class ModelConfig(BaseModel):
     system_prompt: str
 
 
-class ModelListConfig(BaseModel):
+class LLMConfig(BaseModel):
     model_config = ConfigDict(extra="allow", protected_namespaces=tuple())
     model_class: str
 
@@ -47,7 +47,7 @@ class Config(BaseSettings):
     falceur: ModelConfig
     falc_scorer: ModelConfig
     db: DBConfig
-    models: dict[str, ModelListConfig]
+    models: dict[str, LLMConfig]
 
 
 @cache

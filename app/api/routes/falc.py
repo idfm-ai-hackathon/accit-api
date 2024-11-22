@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 
+from app.core.falcer.base import falcate as ffalcate
 from app.core.falcer.understood import get_all_falc_feedback, store_falc_feedback
 from app.models.falc_understood import FalcFeedBack, FalcUnderstood
 from app.models.in_text import FalcText, NormalText
@@ -19,8 +20,7 @@ def falcate(in_text: NormalText) -> str:
     malvoyantes, les personnes âgées, les personnes qui maîtrisent mal le
     français.
     """
-
-    return in_text.text
+    return ffalcate(in_text.text)
 
 
 @router.post("/scorecate")
