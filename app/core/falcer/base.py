@@ -4,6 +4,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 
 from app.core.models import get_model
+from app.db.models.user_feedback import FalcUserFeedBack
 from app.models.config import get_config
 
 
@@ -49,4 +50,23 @@ def falc_text_score(text_to_score: str) -> dict:
 
     model = get_model(model_to_use, model_config)
 
-    return score_a_text(model, config.falc_scorer.system_prompt, text_to_score)
+    user_feedbacks = parse_user_feedback(FalcUserFeedBack.get_all())
+
+    system_prompt = config.falc_scorer.system_prompt
+    system_prompt_with_feedback = f"{system_prompt}\n\nVoici des examples de textes précédemment générés :\n{user_feedbacks}"
+
+    return score_a_text(model, system_prompt_with_feedback, text_to_score)
+
+
+def parse_user_feedback(feedbacks: list[FalcUserFeedBack]) -> str:
+    for feedback in feedbacks:
+        if feedback.understood:
+            return (
+                f"Le texte simplifié suivant a été compris : '{feedback.falc_text}'. "
+                f"Le texte original était : '{feedback.non_falc_text}'"
+            )
+        else:
+            return (
+                f"Le texte simplifié suivant n'a PAS été compris : '{feedback.falc_text}'. "
+                f"Il faudrait que {feedback.non_falc_text} suivent mieux les règles énoncées."
+            )
