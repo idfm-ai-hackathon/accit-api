@@ -7,14 +7,16 @@ from .api.routes import api_router
 
 # Create FastAPI app instance
 app = FastAPI(
-    title="IDFM Transport API",
+    title="IDFM accessible text API",
     description="""
-    A simple API to get transportation information in Paris.
+    Une API pour simplifier des textes en FALC.
 
-    ## Features
-    * Get list of stations
-    * Get information about transport lines
-    * Search stations by name
+    ## Fonctionnalités
+
+    * Générer un texte FALC à partir d'un texte normal
+    * Noter un texte FALCisé (mesurer à quel point il est FALC) en se basant sur des retours utilisateurs
+    * Indiquer si un texte FALCisé a été compris ou non
+    * Récupérer tous les retours utilisateurs sur la FALCisation
     """,
     version="1.0.0",
 )

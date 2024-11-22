@@ -1,7 +1,6 @@
 from fastapi import APIRouter
 
-from app.core.falcer.base import falc_text_score
-from app.core.falcer.base import falcate as ffalcate
+from app.core.falcer.base import falc_text_score, falcate
 from app.core.falcer.understood import get_all_falc_feedback, store_falc_feedback
 from app.models.falc_understood import FalcFeedBack, FalcUnderstood
 from app.models.in_text import FalcText, NormalText
@@ -10,8 +9,8 @@ from app.models.score_falceur import FalcScore
 router = APIRouter()
 
 
-@router.post("/falcate")
-def falcate(in_text: NormalText) -> str:
+@router.post("/text_to_falc")
+def text_to_falc(in_text: NormalText) -> str:
     """Transforme un texte en version FALC.
 
     Ce point de terminaison permet de simplifier un texte en une version facile
@@ -21,10 +20,10 @@ def falcate(in_text: NormalText) -> str:
     malvoyantes, les personnes âgées, les personnes qui maîtrisent mal le
     français.
     """
-    return ffalcate(in_text.text)
+    return falcate(in_text.text)
 
 
-@router.post("/scorecate")
+@router.post("/score_falc")
 def score_falc_isation(in_text: FalcText) -> FalcScore:
     """Mesure la qualité de la FALCisation d'un texte.
 
@@ -35,10 +34,8 @@ def score_falc_isation(in_text: FalcText) -> FalcScore:
     """
     return falc_text_score(in_text.falc_text)
 
-    # return FalcScore(good="good", bad="bad", improve="improve", score=0.0)
 
-
-@router.post("/understood")
+@router.post("/is_text_understood")
 def understood_falc(data: FalcUnderstood) -> None:
     """Indique si un texte falc a été compris ou pas.
 
@@ -49,7 +46,7 @@ def understood_falc(data: FalcUnderstood) -> None:
     return store_falc_feedback(data)
 
 
-@router.get("/get_feedbacks")
+@router.get("/get_user_feedbacks")
 def get_feedbacks() -> list[FalcFeedBack]:
     """Récupère tous les retours utilisateurs sur la FALCisation.
 
