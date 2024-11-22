@@ -16,3 +16,5 @@ pandas
 llama-cpp-python
 huggingface_hub[cli]
 pytest
+alembic
+sqlalchemy
