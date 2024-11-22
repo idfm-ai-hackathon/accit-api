@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 
 class FalcScore(BaseModel):
-    good: str
-    bad: str
-    improve: str
+    good: list[str]
+    bad: list[str]
+    improve: list[str]
     score: float

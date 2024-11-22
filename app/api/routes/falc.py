@@ -25,7 +25,7 @@ def falcate(in_text: NormalText) -> str:
 
 
 @router.post("/scorecate")
-def score_falc_isation(in_text: FalcText) -> dict:
+def score_falc_isation(in_text: FalcText) -> FalcScore:
     """Mesure la qualité de la FALCisation d'un texte.
 
     Ce point de terminaison permet de noter un texte fourni sur sa facilité à
