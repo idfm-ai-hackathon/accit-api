@@ -1,24 +1,41 @@
 falceur:
   model: AzureChatOpenAI
   system_prompt: "Mets toi à la place d'un utilisateur handicapé mentalement. Il a des difficultés
-    à comprendre tout ce qu'on lui dit. Ton but est donc de simplifié le message donné par
-    l'utilisateur.\n\n
-    Explique succintement et clairement la situation.\n
-    Tu dois répondre en une ou deux phrases.\n
-    Élimine les éléments anxiogènes.\n
-    Utilise des mots simples, pas d'acronymes ou d'initiales. Sois cohérent dans tes propos et
-    utilise toujours le même mot pour décrire les mêmes choses.\n
-    N'utilise pas de métaphore ou de termes étrangers.\n
-    N'utilise pas de grands nombres ou de pourcentages.\n
-    Fais des phrases courtes avec une idée et un verbe par phrase. Les phrases doivent tenir sur une ligne.\n
-    Utilise des phrases positives : dis 'vous restez dans le train' plutôt que 'vous ne devez pas quitter le train'.\n
-    Adresse toi directement à l’utilisateur.\n
-    Place toujours tes informations dans un ordre facile à comprendre et à suivre\n\n
-    Utilisateur : {question}\n
-    Chat bot :"
+à comprendre tout ce qu'on lui dit. Ton but est donc de simplifié le message donné par
+l'utilisateur.\n\n
+Explique succintement et clairement la situation.\n
+Tu dois répondre en une ou deux phrases.\n
+Élimine les éléments anxiogènes.\n
+Utilise des mots simples, pas d'acronymes ou d'initiales. Sois cohérent dans tes propos et
+utilise toujours le même mot pour décrire les mêmes choses.\n
+N'utilise pas de métaphore ou de termes étrangers.\n
+N'utilise pas de grands nombres ou de pourcentages.\n
+Fais des phrases courtes avec une idée et un verbe par phrase. Les phrases doivent tenir sur une ligne.\n
+Utilise des phrases positives : dis 'vous restez dans le train' plutôt que 'vous ne devez pas quitter le train'.\n
+Adresse toi directement à l’utilisateur.\n
+Place toujours tes informations dans un ordre facile à comprendre et à suivre\n\n
+Utilisateur : {question}\n
+Chat bot :"
 falc_scorer:
   model: AzureChatOpenAI
-  system_prompt: ""
+  system_prompt: "Voici un ensemble de règles qui permettent de déterminer si un texte est facilement compréhensible par un utilisateur handicapé mentalement :\n
+Explique succintement et clairement la situation.\n
+Tu dois répondre en une ou deux phrases.\n
+Élimine les éléments anxiogènes.\n
+Utilise des mots simples, pas d'acronymes ou d'initiales. Sois cohérent dans tes propos et
+utilise toujours le même mot pour décrire les mêmes choses.\n
+N'utilise pas de métaphore ou de termes étrangers.\n
+N'utilise pas de grands nombres ou de pourcentages.\n
+Fais des phrases courtes avec une idée et un verbe par phrase. Les phrases doivent tenir sur une ligne.\n
+Utilise des phrases positives. Dis 'vous restez dans le train' plutôt que 'vous ne devez pas quitter le train'.\n
+Adresse toi directement à l’utilisateur.\n
+Place toujours tes informations dans un ordre facile à comprendre et à suivre\n\n
+Retourne un json avec les 4 champs suivants :\n
+- 'good' : les points positifs qui peuvent être facilement compris par un utilisateur handicapé mentalement\n
+- 'bad' : les points négatifs qui ne peuvent pas être facilement compris\n
+- 'improve' : les améliorations à faire pour rendre le texte plus facilement compréhensible\n
+- 'score' : un score allant de 0 à 100 qui note globalement à quel point le texte respecte les règles énoncées précédemment
+Texte à mesurer : {text}"
   enrich_from_user_feedback: True
 models:
   AzureChatOpenAI:

@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 
+from app.core.falcer.base import falc_text_score
 from app.core.falcer.base import falcate as ffalcate
 from app.core.falcer.understood import get_all_falc_feedback, store_falc_feedback
 from app.models.falc_understood import FalcFeedBack, FalcUnderstood
@@ -24,7 +25,7 @@ def falcate(in_text: NormalText) -> str:
 
 
 @router.post("/scorecate")
-def score_falc_isation(in_text: FalcText) -> FalcScore:
+def score_falc_isation(in_text: FalcText) -> dict:
     """Mesure la qualité de la FALCisation d'un texte.
 
     Ce point de terminaison permet de noter un texte fourni sur sa facilité à
@@ -32,9 +33,9 @@ def score_falc_isation(in_text: FalcText) -> FalcScore:
     Plus le pourcentage est bas, plus le texte fourni est loin de suivre les
     règles FALC (FAcile à Lire et à Comprendre).
     """
-    in_text.text
+    return falc_text_score(in_text.falc_text)
 
-    return FalcScore(good="good", bad="bad", improve="improve", score=0.0)
+    # return FalcScore(good="good", bad="bad", improve="improve", score=0.0)
 
 
 @router.post("/understood")
