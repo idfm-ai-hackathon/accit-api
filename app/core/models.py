@@ -5,11 +5,10 @@ from app.models.config import LLMConfig
 
 
 def get_model(model_name: str, params: LLMConfig):
-    model_package, *module_path = params.model_class.split(".")
+    model_package, module_name = params.model_class.rsplit(".", 1)
 
     module = importlib.import_module(model_package)
-    for path in module_path:
-        module = getattr(module, path)
+    module = getattr(module, module_name)
 
     fill_secrets_from_env(model_name, params)
 
