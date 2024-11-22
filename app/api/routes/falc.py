@@ -1,5 +1,7 @@
 from fastapi import APIRouter
 
+from app.core.falcer.understood import get_all_falc_feedback, store_falc_feedback
+from app.models.falc_understood import FalcFeedBack, FalcUnderstood
 from app.models.in_text import FalcText, NormalText
 from app.models.score_falceur import FalcScore
 
@@ -22,7 +24,7 @@ def falcate(in_text: NormalText) -> str:
 
 
 @router.post("/scorecate")
-async def score_falc_isation(in_text: FalcText) -> FalcScore:
+def score_falc_isation(in_text: FalcText) -> FalcScore:
     """Mesure la qualité de la FALCisation d'un texte.
 
     Ce point de terminaison permet de noter un texte fourni sur sa facilité à
@@ -33,3 +35,24 @@ async def score_falc_isation(in_text: FalcText) -> FalcScore:
     in_text.text
 
     return FalcScore(good="good", bad="bad", improve="improve", score=0.0)
+
+
+@router.post("/understood")
+def understood_falc(data: FalcUnderstood) -> None:
+    """Indique si un texte falc a été compris ou pas.
+
+    Ce point de terminaison permet de vérifier si un texte FALCisé est bien
+    compris. La requête sera stocké dans une base de données pour permettre
+    aux prochaines FALCification d'être plus facile à comprendre.
+    """
+    return store_falc_feedback(data)
+
+
+@router.get("/get_feedbacks")
+def get_feedbacks() -> list[FalcFeedBack]:
+    """Récupère tous les retours utilisateurs sur la FALCisation.
+
+    Ce point de terminaison permet de récupérer tous les retours utilisateurs
+    sur la qualité de la FALCisation d'un texte.
+    """
+    return get_all_falc_feedback()
