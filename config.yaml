@@ -1,0 +1,17 @@
+falceur:
+  model: AzureChatOpenAI
+  system_prompt: ""
+falc_scorer:
+  model: AzureChatOpenAI
+  system_prompt: ""
+  enrich_from_user_feedback: True
+models:
+  AzureChatOpenAI:
+    model_class: langchain_openai.AzureChatOpenAI
+    temperature: 0.9
+    model: gpt-4o-mini
+    api_version: 2024-08-01-preview
+    azure_endpoint: SECRET
+    api_key: SECRET
+db:
+  url: sqlite:///userfeedback.db
