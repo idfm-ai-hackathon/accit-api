@@ -58,4 +58,4 @@ Ce serait intéressant de faire tourner le modèle pour scorer et/ou FALC-iser l
 ### Calcul d’itinéraire 
 - https://www.metro-connexion.org/index.php pour la description des correspondances
 ## Remerciements
-Aurélie, spécialiste du FALC, consultée par téléphone pendant le hackathon
+Aurélie Chasles, spécialiste du FALC, consultée par téléphone pendant le hackathon (http://aureliechasles-falc.fr/)
