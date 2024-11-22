@@ -1,0 +1,2 @@
+def falcate() -> str:
+    pass
