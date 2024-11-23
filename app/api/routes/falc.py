@@ -1,7 +1,11 @@
 from fastapi import APIRouter
 
-from app.core.falcer.base import falc_text_score, falcate
-from app.core.falcer.understood import get_all_falc_feedback, store_falc_feedback
+from app.core.falcer import (
+    falcate_text,
+    get_all_falc_feedback,
+    score_text_on_falc,
+    store_falc_feedback,
+)
 from app.models.falc_understood import FalcFeedBack, FalcUnderstood
 from app.models.in_text import FalcText, NormalText
 from app.models.score_falceur import FalcScore
@@ -20,7 +24,7 @@ def text_to_falc(in_text: NormalText) -> str:
     malvoyantes, les personnes âgées, les personnes qui maîtrisent mal le
     français.
     """
-    return falcate(in_text.text)
+    return falcate_text(in_text.text)
 
 
 @router.post("/score_falc")
@@ -32,7 +36,7 @@ def score_falc_isation(in_text: FalcText) -> FalcScore:
     Plus le pourcentage est bas, plus le texte fourni est loin de suivre les
     règles FALC (FAcile à Lire et à Comprendre).
     """
-    return falc_text_score(in_text.falc_text)
+    return score_text_on_falc(in_text.falc_text)
 
 
 @router.post("/is_text_understood")

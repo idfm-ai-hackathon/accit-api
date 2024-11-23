@@ -15,6 +15,10 @@ class ModelConfig(BaseModel):
     system_prompt: str
 
 
+class FalcScoreConfig(ModelConfig):
+    enrich_with_user_feedback: bool = False
+
+
 class LLMConfig(BaseModel):
     model_config = ConfigDict(extra="allow", protected_namespaces=tuple())
     model_class: str
@@ -45,7 +49,7 @@ class Config(BaseSettings):
         )
 
     falceur: ModelConfig
-    falc_scorer: ModelConfig
+    falc_scorer: FalcScoreConfig
     db: DBConfig
     models: dict[str, LLMConfig]
 
