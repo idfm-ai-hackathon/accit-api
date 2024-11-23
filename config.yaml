@@ -40,7 +40,7 @@ Renvoie un dictionnaire json avec les 4 champs suivants :\n
 - `improve` : une liste des améliorations à faire pour rendre le texte à mesurer plus facilement compréhensible. Tu peux prendre des exemples du texte à mesurer de choses qui ont été mal faites.\n
 - `score` : un score allant de 0 à 100 qui note globalement à quel point le texte à mesurer respecte les règles énoncées précédemment.\n\n
 Texte à mesurer : {text}"
-  enrich_from_user_feedback: True
+  enrich_with_user_feedback: True
 models:
   AzureChatOpenAI:
     model_class: langchain_openai.AzureChatOpenAI
